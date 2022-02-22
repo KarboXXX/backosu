@@ -1,6 +1,5 @@
 const fs = require("fs");
 const exePath = process.cwd();
-console.info(exePath)
 
 function typeholder(inputID) {
   if (!document.getElementById(inputID).placeholder.includes('/') && !document.getElementById(inputID).placeholder.includes('\\'))

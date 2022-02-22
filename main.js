@@ -16,7 +16,7 @@ function createWindow() {
     
   })
 
-  win.setIcon(path.join(__dirname, './build/icon.png'))
+  win.setIcon(path.join(__dirname, '/build/icon.png'))
   win.loadFile('./app/index.html')
   win.setMenuBarVisibility(false)
 
@@ -37,4 +37,4 @@ app.on('window-all-closed', () => {
   }
 })
 
-// app.on('activate', () => { if (win === null) { createWindow() } })
+app.on('activate', () => { if (win === null) { createWindow() } })
