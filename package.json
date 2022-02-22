@@ -1,5 +1,5 @@
 {
-  "name": "osubackup",
+  "name": "backosu",
   "version": "1.0.0",
   "description": "backup all your songs into a text file.",
   "main": "main.js",
@@ -30,7 +30,7 @@
   },
   "postinstall": "electron-builder install-app-deps",
   "build": {
-    "productName": "OsuBackUp",
+    "productName": "backosu",
     "linux": {
       "category": "Utility, Game",
       "target": [
