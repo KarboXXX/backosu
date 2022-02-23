@@ -2,8 +2,7 @@ const fs = require("fs");
 const exePath = process.cwd();
 
 function typeholder(inputID) {
-  if (!document.getElementById(inputID).placeholder.includes('/') && !document.getElementById(inputID).placeholder.includes('\\'))
-  { return; }
+  if (!document.getElementById(inputID).placeholder.includes('/') && !document.getElementById(inputID).placeholder.includes('\\')) { return; }
   document.getElementById(inputID).value = document.getElementById(inputID).placeholder;
 }
 
@@ -14,7 +13,11 @@ function verifyPlaceholder(placeholder) {
 
 function backup() {
   const osuDir = document.getElementById("path").value;
-  // const message = document.getElementById("message");
+  let actual;
+    if (process.platform != "win32" && process.platform == "linux" || process.platform == "freebsd") {
+      actual = `/home/${require("os").userInfo().username}/Downloads`
+      if (!fs.existsSync(actual)) { actual = `/home/${require("os").userInfo().username}` }
+    } if (process.platform == "win32") { actual = `C:\\Users\\${require('os').userInfo().username}` }
 
   if (osuDir.endsWith('/Songs')) {
     osuDir.replace('/Songs', '');
@@ -31,13 +34,13 @@ function backup() {
       downloadList += `${code} ${name} : ${downloadUrl}`;
     });
 
-    var dir = `${exePath}/backup`;
+    var dir = `${actual}/backup`;
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir);
       fs.writeFileSync(`${dir}/list.txt`, downloadList, "utf8");
     }
 
-    return 'success'
+    return dir
   } else {
     return 'error'
   }

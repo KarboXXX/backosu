@@ -1,10 +1,11 @@
 const process = require("process");
-const exePath = process.cwd();
 const { backup, typeholder, verifyPlaceholder } = require("./js/backup.js");
-const { choosePath, compare } = require('./js/compare.js');
+const { choosePath } = require('./js/compare.js');
 const swal = require('sweetalert2')
 
+let bar;
 var placeholder = { clickedtimes: 0 };
+let backupResult;
 
 function fallbackCopyTextToClipboard(text) {
   var textArea = document.createElement("textarea");
@@ -35,14 +36,14 @@ function copyTextToClipboard(text) {
 // process.platform === "win32"
 // require("os").userInfo().username
 
-window.addEventListener('load', () => { // at page load, detect the User's OS to change placeholder 
+window.addEventListener('load', () => {
   if (process.platform != "win32" && process.platform == "linux" || process.platform == "freebsd") {
-    let placeholder = `/home/${require("os").userInfo().username}/.local/share/osu-wine/OSU`
+    let placeholder = `/home/${require("os").userInfo().username}/.local/share/osu-wine/OSU`;
     if (verifyPlaceholder(placeholder)) {
       document.getElementById("path").placeholder = `/home/${require("os").userInfo().username}/.local/share/osu-wine/OSU`;
     }
 
-
+    bar = "/"
 
     if(process.getuid() == 0) {
       alert('\nYou are advised to not run with root privileges.\n');
@@ -50,11 +51,13 @@ window.addEventListener('load', () => { // at page load, detect the User's OS to
   }
 
   if (process.platform == "win32") {
+    bar = "\\"
     document.getElementById("path").placeholder = `C:\\Users\\${require('os').userInfo().username}\\AppData\\Local\\osu!`;
   }
 
   document.getElementById('backup').addEventListener('click', () => {
-    if (backup() == 'error') {
+    backupResult = backup();
+    if (backupResult == 'error') {
       document.getElementById('path').style.animation = 'shake 0.82s cubic-bezier(.36,.07,.19,.97) both'
       document.getElementById('path').style.border = '1px solid red'
       setTimeout(() => {
@@ -65,7 +68,7 @@ window.addEventListener('load', () => { // at page load, detect the User's OS to
         document.getElementById('path').style.border = '';
       }, 821)
     } else {
-      swal.fire({ icon: "success", title: "backup/list.txt has been created!", confirmButtonText: "Yay!" })
+      swal.fire({ icon: "success", title: backupResult + bar + "list.txt has been created!", confirmButtonText: "Yay!" })
     }
   })
 

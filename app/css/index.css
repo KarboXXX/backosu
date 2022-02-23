@@ -68,7 +68,8 @@ body { transition: 1s; }
     position: absolute;
     width: 30px;
     height: 30px;
-    margin-top: 113px;
+    top: 89%;
+    /* margin-top: 14.1%; */
     background: url("./github.svg") no-repeat;
     background-size: contain;
     display: block;
