@@ -35,8 +35,7 @@
       "category": "Utility, Game",
       "target": [
         "deb",
-        "AppImage",
-        "tar.xz"
+        "AppImage"
       ]
     },
     "mac": {

@@ -1,6 +1,5 @@
 const fileDialog = require('file-dialog');
 const fs = require('fs');
-const diff = require('fast-diff');
 const Diff = require('diff');
 const process = require("process");
 const exePath = process.cwd();
