@@ -29,16 +29,16 @@ function backup() {
       const code = file.slice(0, file.indexOf(" "));
       const name = file.slice(file.indexOf(" "), file.length).replace(" ", "");
 
-      const downloadUrl = `https://storage.ripple.moe/d/${code}\r\n`;
+      const downloadUrl = `https://osu.ppy.sh/beatmapsets/${code}\r\n`;
 
       downloadList += `${code} ${name} : ${downloadUrl}`;
+
+      downloadList = downloadList.split('/n').sort((a, b) => { return a - b }).toString();
     });
 
     var dir = `${actual}/backup`;
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir);
-      fs.writeFileSync(`${dir}/list.txt`, downloadList, "utf8");
-    }
+    if (!fs.existsSync(dir)) { fs.mkdirSync(dir); }
+    fs.writeFileSync(`${dir}/list.txt`, downloadList, "utf8");
 
     return dir
   } else {
