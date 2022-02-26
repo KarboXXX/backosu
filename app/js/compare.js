@@ -27,8 +27,8 @@ function compare(path1, path2) {
     if (file1 === file2) return swal.fire({ icon: "success", title: "Both files are idetical!", confirmButtonText: "Thanks!" });
 
     result = Diff.diffLines(file1, file2).forEach((part) => {
-        if (part.added) { added = part.value.toString(); }
-        if (part.removed) { removed = part.value.toString(); }
+        if (part.added) { added += part.value.toString(); }
+        if (part.removed) { removed += part.value.toString(); }
     })
 
     result = "[---]: " + removed + "\n\n[+++]: " + added
