@@ -34,42 +34,47 @@ body { transition: 1s; }
 
 #path-div { padding-bottom: 5px; }
 
-
-#backup {
+.structure {
     width: 40%;
     height: 30px;
-    align-content: center;
     align-items: center;
     align-self: center;
+    align-content: center;
     border: none;
     outline: none;
-    background-color: #171a18;
-    color: whitesmoke;
     cursor: pointer;
+    border-radius: 8px;
 }
-#backup-div { padding-top: 2px; }
 
-
-#check {
-    width: 40%;
-    height: 30px;
-    align-items: center;
-    align-self: center;
-    align-content: center;
-    border: none;
-    outline: none;
-    background-color: #242424;
+#backup-button {
+    background-color: #303030;
     color: whitesmoke;
-    cursor: pointer;
+}
+#backup-div { 
+    padding-top: 2px; 
+}
+
+
+#check-button {
+    background-color: #262626;
+    color: whitesmoke;
+}
+#check-div { 
+    padding-top: 2px; 
+    padding-bottom: 2px; 
+}
+
+#download-button {
+    background-color: #141414;
+    color: whitesmoke;
 } 
-#check-div { padding-top: 2px; padding-bottom: 2px; }
+#download-div { padding-bottom: 2px; }
 
 #github {
     position: absolute;
     width: 30px;
     height: 30px;
-    top: 89%;
-    /* margin-top: 14.1%; */
+    top: 90%;
     background: url("./github.svg") no-repeat;
     background-size: contain;
     display: block;
@@ -79,13 +84,9 @@ body { transition: 1s; }
     cursor: pointer;
     transition: 0.3s;
 } #github:hover {
-    position: absolute;
     cursor: pointer;
     background: url('./github-hover.svg') no-repeat;
     background-size: contain;
-    display: block;
-    border: none;
-    outline: none;
     transition: 0.3s;
 }
 

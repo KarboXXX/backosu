@@ -16,7 +16,7 @@ function createWindow() {
     
   })
 
-  // win.setIcon(path.join(__dirname, '/build/icon.png'))
+  win.setIcon('./build/icon.png');
   win.loadFile('./app/index.html')
   win.setMenuBarVisibility(false)
 

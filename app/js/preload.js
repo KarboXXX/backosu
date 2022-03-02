@@ -1,9 +1,12 @@
 const process = require("process");
 const { backup, typeholder, verifyPlaceholder } = require("./js/backup.js");
 const { choosePath } = require('./js/compare.js');
-const swal = require('sweetalert2')
+const { downloadBeatmaps } = require('./js/download.js');
+const swal = require('sweetalert2');
+const path = require("path");
+const os = require('os');
 
-let bar;
+let bar = path.sep
 var placeholder = { clickedtimes: 0 };
 let backupResult;
 
@@ -38,24 +41,20 @@ function copyTextToClipboard(text) {
 
 window.addEventListener('load', () => {
   if (process.platform != "win32" && process.platform == "linux" || process.platform == "freebsd") {
-    let placeholder = `/home/${require("os").userInfo().username}/.local/share/osu-wine/OSU`;
+    let placeholder = `/home/${os.userInfo().username}/.local/share/osu-wine/OSU`;
     if (verifyPlaceholder(placeholder)) {
-      document.getElementById("path").placeholder = `/home/${require("os").userInfo().username}/.local/share/osu-wine/OSU`;
+      document.getElementById("path").placeholder = `${os.homedir()}/.local/share/osu-wine/OSU`;
     }
-
-    bar = "/"
-
     if(process.getuid() == 0) {
       alert('\nYou are advised to not run with root privileges.\n');
     }
   }
 
   if (process.platform == "win32") {
-    bar = "\\"
-    document.getElementById("path").placeholder = `C:\\Users\\${require('os').userInfo().username}\\AppData\\Local\\osu!`;
+    document.getElementById("path").placeholder = `${os.homedir}\\AppData\\Local\\osu!`;
   }
 
-  document.getElementById('backup').addEventListener('click', () => {
+  document.getElementById('backup-button').addEventListener('click', () => {
     backupResult = backup();
     if (backupResult == 'error') {
       document.getElementById('path').style.animation = 'shake 0.82s cubic-bezier(.36,.07,.19,.97) both'
@@ -72,12 +71,16 @@ window.addEventListener('load', () => {
     }
   })
 
-  document.getElementById('check').addEventListener('click', () => {
+  document.getElementById('check-button').addEventListener('click', () => {
     choosePath();
   })
 
   document.getElementById('path').addEventListener('click', () => {
     if (placeholder.clickedtimes <= 0) { typeholder('path'); placeholder.clickedtimes+=1; }
+  })
+
+  document.getElementById('download-button').addEventListener('click', () => {
+    downloadBeatmaps()
   })
 
   document.getElementById('github').addEventListener('click', () => {

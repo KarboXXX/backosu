@@ -1,26 +1,21 @@
 const fileDialog = require('file-dialog');
 const fs = require('fs');
 const Diff = require('diff');
-const process = require("process");
-const exePath = process.cwd();
-// let exePath;
-// if (process.platform != "win32" && process.platform == "linux" || process.platform == "freebsd") {
-//     exePath = `/home/${require("os").userInfo().username}/Downloads`
-//     if (fs.existsSync(exePath)) { return; } 
-//     else { exePath = `/home/${require("os").userInfo().username}` }
-//   } else if (process.platform == "win32") {
-//     exePath = `C:\\Users\\${require('os').userInfo().username}`
-// }
+const path = require('path');
+const os = require('os')
 
 function choosePath() {
     fileDialog({multiple: true, accept: "text/*"}).then(files => {
-        // return files[0].path
-        compare(files[0].path, files[1].path);
+        if (files.length < 2) {
+            fileDialog({multiple: false, accept: "text/*"}).then(files2 => {
+                compare(files[0].path, files2[0].path)
+            });
+        } else compare(files[0].path, files[1].path);
     });
 }
 
 function compare(path1, path2) {
-    var file1, file2, test, result, added, removed = "";
+    var file1, file2, result = "", added = "", removed = "";
     file1 = fs.readFileSync(path1).toString()
     file2 = fs.readFileSync(path2).toString()
 
@@ -33,21 +28,14 @@ function compare(path1, path2) {
 
     result = "[---]: " + removed + "\n\n[+++]: " + added
 
-    let actual, bar;
-    if (process.platform != "win32" && process.platform == "linux" || process.platform == "freebsd") {
-        actual = `/home/${require("os").userInfo().username}/Downloads`
-        bar = "/"
-        if (!fs.existsSync(actual)) { actual = `/home/${require("os").userInfo().username}` }
-    } if (process.platform == "win32") { 
-        bar = "\\";
-        actual = `C:\\Users\\${require('os').userInfo().username}`
-    }
+    let actual = path.resolve(os.homedir(), "./Downloads")
+    if (!fs.existsSync(actual)) actual = os.homedir();
 
-    var dir = `${actual}/backup`;
+    var dir = path.resolve(actual, "./backup");
     if (!fs.existsSync(dir)) fs.mkdirSync(dir);
     fs.writeFileSync(`${dir}/compar.txt`, result, "utf8");
 
-    return swal.fire({ icon: "success", title: dir + bar + "compar.txt has been created!", confirmButtonText: "Let's go!" }); 
+    return swal.fire({ icon: "success", title: dir + path.sep + "compar.txt has been created!", confirmButtonText: "Let's go!" }); 
 }
 
 module.exports = { choosePath, compare }
