@@ -2,7 +2,7 @@ const url = require('url')
 const fs = require('fs');
 const fileDialog = require('file-dialog');
 const path = require('path');
-const Q = require('q')
+const Q = require('q'); // you forgot to put a ; in this line
 const os = require('os');
 
 var link = "", filename = ""
