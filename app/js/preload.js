@@ -45,6 +45,7 @@ window.addEventListener('load', () => {
     if (verifyPlaceholder(placeholder)) {
       document.getElementById("path").placeholder = `${os.homedir()}/.local/share/osu-wine/OSU`;
     }
+    
     if(process.getuid() == 0) {
       alert('\nYou are advised to not run with root privileges.\n');
     }
