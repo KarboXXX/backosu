@@ -1,10 +1,12 @@
-const process = require("process");
+const process = require('process');
 const { backup, typeholder, verifyPlaceholder } = require("./js/backup.js");
 const { choosePath } = require('./js/compare.js');
 const { downloadBeatmaps } = require('./js/download.js');
 const swal = require('sweetalert2');
 const path = require("path");
 const os = require('os');
+const { compare } = require("./js/compare.js");
+const fileDialog = require('file-dialog');
 
 let bar = path.sep
 var placeholder = { clickedtimes: 0 };
@@ -42,6 +44,12 @@ function copyTextToClipboard(text) {
 window.addEventListener('load', () => {
   if (process.platform != "win32" && process.platform == "linux" || process.platform == "freebsd") {
     let placeholder = `/home/${os.userInfo().username}/.local/share/osu-wine/OSU`;
+    
+    let root = path.parse("/").root;
+    document.getElementById("file2-span").innerHTML = root;
+    document.getElementById("file1-span").innerHTML = root;
+
+
     if (verifyPlaceholder(placeholder)) {
       document.getElementById("path").placeholder = `${os.homedir()}/.local/share/osu-wine/OSU`;
     }
@@ -60,9 +68,6 @@ window.addEventListener('load', () => {
     if (backupResult == 'error') {
       document.getElementById('path').style.animation = 'shake 0.82s cubic-bezier(.36,.07,.19,.97) both'
       document.getElementById('path').style.border = '1px solid red'
-      setTimeout(() => {
-        swal.fire({ icon: "error", title: "Something went wrong.", confirmButtonText: ":/"});
-      }, 1000)
       setTimeout(() => { 
         document.getElementById('path').style.animation = '';
         document.getElementById('path').style.border = '';
@@ -72,8 +77,33 @@ window.addEventListener('load', () => {
     }
   })
 
+  document.getElementById('search-1').addEventListener('click', () => {
+    fileDialog({multiple: false, accept: "text/*"}).then(file => {
+      document.getElementById("file1").value = file[0].path;
+    });
+  })
+
+  document.getElementById('search-2').addEventListener('click', () => {
+    fileDialog({multiple: false, accept: "text/*"}).then(file => {
+      document.getElementById("file2").value = file[0].path;
+    });
+  })
+
   document.getElementById('check-button').addEventListener('click', () => {
-    choosePath();
+    let path1 = document.getElementById("file1").value;
+    let path2 = document.getElementById("file2").value;
+    let warning = document.getElementById("warning");
+
+    if (path1 == "" || path2 == "") {
+      warning.style.display = "block";
+      warning.innerHTML = "You forgot a file path, please enter all required file paths.";
+
+      return;
+    }
+    
+    document.getElementById("warning").style.display = "none";
+    compare(path1, path2);
+
   })
 
   document.getElementById('path').addEventListener('click', () => {

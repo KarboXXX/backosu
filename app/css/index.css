@@ -1,6 +1,6 @@
 html {
     font-family: Ubuntu;
-    zoom: 100%;
+    zoom: 90%;
     user-select: none;
     -webkit-user-select: none;
    -khtml-user-select: none;
@@ -9,72 +9,29 @@ html {
 }
 body { transition: 1s; }
 
-.container {
-    align-content: center;
-    align-self: center;
-    text-align: center;
-    transition: 3s;
+.container { transition: 3s; }
+
+#warning {
+    display: none;
 }
 
 .path {
-    width: 40%;
+    width: 20%;
     border: none;
     outline: 1px solid grey;
-    /* border-top-left-radius: 10%;
-    border-bottom-left-radius: 10%;
-    border-top-right-radius: 10%;
-    border-bottom-right-radius: 10%; */
     
 }:focus {
-    outline: none !important;
+    outline: none;
     border:1px solid black;
     transition: 1s;
 }
 
-
-#path-div { padding-bottom: 5px; }
-
-.structure {
-    width: 40%;
-    height: 30px;
-    align-items: center;
-    align-self: center;
-    align-content: center;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    border-radius: 8px;
-}
-
-#backup-button {
-    background-color: #303030;
-    color: whitesmoke;
-}
-#backup-div { 
-    padding-top: 2px; 
-}
-
-
-#check-button {
-    background-color: #262626;
-    color: whitesmoke;
-}
-#check-div { 
-    padding-top: 2px; 
-    padding-bottom: 2px; 
-}
-
-#download-button {
-    background-color: #141414;
-    color: whitesmoke;
-} 
-#download-div { padding-bottom: 2px; }
-
 #github {
     position: absolute;
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     top: 90%;
+    margin-left: 10px;
     background: url("./github.svg") no-repeat;
     background-size: contain;
     display: block;

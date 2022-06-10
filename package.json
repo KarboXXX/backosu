@@ -4,7 +4,7 @@
   "description": "backup all your songs into a text file.",
   "main": "main.js",
   "author": "KarboX@KarboXXX <karbox@osubackup.com>",
-  "repository":"https://github.com/KarboXXX/backosu/",
+  "repository": "https://github.com/KarboXXX/backosu/",
   "bugs": "https://github.com/KarboXXX/backosu/issues",
   "license": "MIT",
   "dependencies": {
@@ -20,8 +20,8 @@
     "sweetalert2": "^11.3.4"
   },
   "devDependencies": {
-    "electron": "^17.0.1",
-    "electron-builder": "^22.14.5"
+    "electron-builder": "^22.14.5",
+    "electron": "^19.0.3"
   },
   "scripts": {
     "start": "electron .",
