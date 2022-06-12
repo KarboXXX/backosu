@@ -6,10 +6,10 @@ function createWindow() {
     width: 1000, 
     height: 500, 
     resizable: false,
-    icon: path.join(__dirname, '/build/icon.png'),
+    icon: './build/icon.png',
     webPreferences: {
-      preload: path.join(__dirname, 'app/js/preload.js'),
-      preload: path.join(__dirname, 'app/js/backup.js'),
+      preload: './app/js/preload.js',
+      preload: './app/js/backup.js',
       nodeIntegration: true,
       contextIsolation: false
     }
