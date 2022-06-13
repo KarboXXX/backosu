@@ -6,20 +6,19 @@ function createWindow() {
     width: 1000, 
     height: 500, 
     resizable: false,
-    icon: './build/icon.png',
+    icon: path.join(__dirname, '/build/icon.png'),
     webPreferences: {
-      preload: './app/js/preload.js',
-      preload: './app/js/backup.js',
+      preload: path.join(__dirname, 'app/js/preload.js'),
+      preload: path.join(__dirname, 'app/js/backup.js'),
       nodeIntegration: true,
       contextIsolation: false
     }
-    
   })
-
-  win.setIcon('./build/icon.png');
-  win.loadFile('./app/index.html')
+  
   win.setMenuBarVisibility(false)
-
+  win.loadFile(path.join(__dirname, './app/index.html'));
+  
+  win.setIcon(path.join(__dirname, '/build/icon.png'));
   // win.webContents.openDevTools()
 };
 
