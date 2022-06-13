@@ -1,5 +1,7 @@
 const { app, BrowserWindow } = require('electron')
-const path = require('path')
+const ipc = require('electron').ipcMain;
+const dialog = require('electron').dialog;
+const path = require('path');
 
 function createWindow() {
   var win = new BrowserWindow({
@@ -34,6 +36,14 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
   }
+})
+
+ipc.on('open-file-dialog', function (event) {
+  dialog.showOpenDialog({
+    properties: ['openDirectory']
+  }, function (files) {
+    event.sender.send('selected-dir', files);
+  })
 })
 
 app.on('activate', () => { if (win === null) { createWindow() } })

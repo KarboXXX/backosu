@@ -11,10 +11,11 @@ function verifyPlaceholder(placeholder) {
   if (fs.existsSync(placeholder)) { return true; } else { return false }
 }
 
-function backup() {
+function backup(backupPath) {
   const osuDir = document.getElementById("path").value;
-  let actual = path.resolve(os.homedir(), './Downloads');
-  if (!fs.existsSync(actual)) actual = os.homedir();
+
+  if (!backupPath || !fs.readdirSync(backupPath)) return 'backup_path_error';
+  if (!osuDir || !fs.readdirSync(osuDir) ) return 'osu_path_error';
 
   if (osuDir.endsWith('/Songs')) {
     osuDir.replace('/Songs', '');
@@ -31,14 +32,12 @@ function backup() {
       downloadList = downloadList.split('/n').sort((a, b) => { return a - b }).toString(); // alphabetic order
     });
 
-    var dir = path.resolve(actual, `./Downloads/backup`);
-    if (!fs.existsSync(path.resolve(dir, '../'))) dir = path.resolve(actual, './backup')
-    if (!fs.existsSync(dir)) { fs.mkdirSync(dir); }
+    var dir = backupPath
     fs.writeFileSync(`${dir}/list.txt`, downloadList, "utf8");
 
     return dir // handling results on other files
   } else {
-    return 'error' // handling results on other files
+    return 'osu_path_error' // handling results on other files
   }
 }
 

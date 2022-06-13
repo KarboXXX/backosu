@@ -1,12 +1,12 @@
 const process = require('process');
-const { backup, typeholder, verifyPlaceholder } = require("./js/backup.js");
-const { choosePath } = require('./js/compare.js');
-const { downloadBeatmaps } = require('./js/download.js');
-const swal = require('sweetalert2');
-const path = require("path");
 const os = require('os');
-const { compare } = require("./js/compare.js");
+const path = require("path");
+const fs = require("fs");
 const fileDialog = require('file-dialog');
+const swal = require('sweetalert2');
+const { backup, typeholder, verifyPlaceholder } = require("./js/backup.js");
+const { downloadBeatmaps } = require('./js/download.js');
+const { compare } = require("./js/compare.js");
 
 let bar = path.sep
 var placeholder = { clickedtimes: 0 };
@@ -46,8 +46,8 @@ window.addEventListener('load', () => {
     let placeholder = `/home/${os.userInfo().username}/.local/share/osu-wine/OSU`;
     
     let root = path.parse("/").root;
-    document.getElementById("file2-span").innerHTML = root;
-    document.getElementById("file1-span").innerHTML = root;
+    document.getElementById("file2-compare-span").innerHTML = root;
+    document.getElementById("file1-compare-span").innerHTML = root;
 
 
     if (verifyPlaceholder(placeholder)) {
@@ -63,29 +63,67 @@ window.addEventListener('load', () => {
     document.getElementById("path").placeholder = `${os.homedir}\\AppData\\Local\\osu!`;
   }
 
+  document.getElementById('searchBackup').addEventListener('click', () => {
+    fileDialog({multiple: false}).then(file => {
+      if (fs.readFileSync(file[0].path)) {
+        swal.fire({
+          icon: "warning", 
+          title: "File already exists", 
+          text: "Would you want to overwrite it? Not overwriting will return the file folder (not deleting it)", 
+          showCancelButton: true,
+          confirmButtonText: "Yes.",
+          cancelButtonText: "No."
+        }).then((result) => {
+          if (result.dismiss == "backdrop") return;
+          if (result.isConfirmed) {
+            document.getElementById('backupPath').value = file[0].path.toString();
+          } else {
+            let ff = path.resolve(file[0].path, '..')
+            document.getElementById('backupPath').value = ff.toString();
+            
+          };
+        });
+      };
+    });
+  });
+
   document.getElementById('backup-button').addEventListener('click', () => {
-    backupResult = backup();
-    if (backupResult == 'error') {
+    backupResult = backup(document.getElementById('backupPath').value);
+    let go = true;
+
+    if (backupResult == 'osu_path_error') {
       document.getElementById('path').style.animation = 'shake 0.82s cubic-bezier(.36,.07,.19,.97) both'
       document.getElementById('path').style.border = '1px solid red'
       setTimeout(() => { 
         document.getElementById('path').style.animation = '';
         document.getElementById('path').style.border = '';
       }, 821)
-    } else {
-      swal.fire({ icon: "success", title: backupResult + bar + "list.txt has been created!", confirmButtonText: "Yay!" })
+      go = false;
     }
+    
+    if (backupResult == 'backup_path_error') {
+      let ff = os.homedir();
+
+      if (fs.readdirSync(path.resolve(os.homedir(), './Downloads'))) {
+        ff = path.resolve(os.homedir(), './Downloads');
+      }
+      
+      document.getElementById('backupPath').value = ff;
+      go = false;
+    }
+    
+    if (go) return swal.fire({ icon: "success", title: "list.txt has been created!", confirmButtonText: "Yay!" })
   })
 
-  document.getElementById('search-1').addEventListener('click', () => {
+  document.getElementById('search-compare-1').addEventListener('click', () => {
     fileDialog({multiple: false, accept: "text/*"}).then(file => {
-      document.getElementById("file1").value = file[0].path;
+      document.getElementById("file1-compare").value = file[0].path;
     });
   })
 
-  document.getElementById('search-2').addEventListener('click', () => {
+  document.getElementById('search-compare-2').addEventListener('click', () => {
     fileDialog({multiple: false, accept: "text/*"}).then(file => {
-      document.getElementById("file2").value = file[0].path;
+      document.getElementById("file2-compare").value = file[0].path;
     });
   })
 
