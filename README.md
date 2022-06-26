@@ -1,48 +1,56 @@
-# BackOsu
-BackOsu is an app designed to backup and then download automatically all your osu! songs when needed.
+<h1 align='center'>BackOsu is designed to backup and download all your osu! songs. </h1>
 
-## The interface (Under development).
+<div align='center'>
+  <img height='125px' width='120px' src='./readme/electron.svg'>
+  <h2>Powered by <a href='www.electronjs.org'>Electron</a>.</h2>
+</div>
 
-There are 2 ways to use it:
-- 1. For making the backup (a .txt file) and using it to download the beatmaps in another pc or after reinstalling.
-- 2. To share your entire beatmap list to your friends (especially if they are new and have barely no maps at all).
+<br>
+<br>
 
-## BackOsu usage
-First of all, insert your path in the input field.
-The default osu! folder path is written there by default in case you dont know where it is.
-The file explorer will open and you just have to choose the osu! folder.
+## Interface
 
-- 1. After selecting the osu! folder path, click **Generate Backup List**. A folder called **Backup** will be created and inside of it, the **downloadList.txt** (<u>this is the file you save</u>).
-- 2. Whenever you want to download the songs from the backup file, click **Download From Backup**. A folder called **DownloadedBeatmaps** will appear and the beatmaps will be downloaded 1 by 1 there so dont worry about your bandwidth.
-- 3. Once they all get downloaded, just import them as you want, dragging them all into osu! or one by one, whichever your pc can handle.
+<img width='720px' src='./readme/interface.png'>
 
-## Sharing beatmaps usage
-This one is a bit tricky since its not the main usage of this tool, but you can still do it so here it goes how:
+From there, you can simply either backup your data, compare two different backups, or download your songs with ease.
 
-- 1. First, you have to select your osu! folder in the input field and then click on **Generate Backup List**. The file **downloadList.txt** gets created inside of the folder **Backup**.
-- 2. Tell your friends to download this app and also send them your file **downloadList.txt**.
-- 3. The app only downloads the beatmaps if they are in the folder **Backup**, so they have to manually create the folder (or do step 1 and replace their **downloadList.txt** with yours).
-- 4. Your friends now click **Download From Backup** and the beatmaps will appear inside a folder called **DownloadedBeatmaps**.
+## How to use
+When typing your **osu! path**, the default osu! folder is shown by default, in case you dont know where it is. *We'll warn you if [we don't know either](https://github.com/KarboXXX/backosu/issues).*
 
-## Comparing beatmaps
-Compare your beatmaps with someone's beatmaps using this app, and see what song's you both don't share.
+<img width='500px' src='./readme/path.png'>
 
-- 1. Click on **Compare Two lists**.
-- 2. Select two lists you want to compare using Ctrl and Click to select. (need to be in the same folder, on progress.)
-- 3. Verify where the file **compar.txt** was created, and open to see the result!
+When **backing up**, you can select the folder you want the backup to be created in, no worries with backing up using an external drive. *(although the backup is just a text file with names and download links)*
+
+<img width='500px' src='./readme/backup.png'>
+
+When **comparing two lists**, you'll need to select two files, giving their path, either by typing, or clicking "**Search**" and selecting them.
+
+<img width='500px' src='./readme/compare.png'>
+
+-----
+
+## Installing
+Now it's up to you if you want to install the [latest release](https://github.com/KarboXXX/backosu/releases) or [build using the source code](https://github.com/KarboXXX/backosu#building-from-source). Any bugs related to compiled releases instalation, please [report an issue](https://github.com/KarboXXX/backosu/issues).
+
+Note that all songs that can be backed up are ranked ones, no unranked songs can be backed up at the moment. If you know a mirror server that contains unranked beatmaps, or another method of link direct downloads using plain text, [let us know and eli5](https://github.com/KarboXXX/backosu/issues).
+
+-----
 
 ## Building from source
-**Keep in mind that, compiling is a hard CPU task, time and CPU usage goes with your setup, be aware when compiling using other apps, and make sure to have 1G of free memory.**
 ### Windows
 - install dependecies to compile/run the project.: [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) & [git](https://git-scm.com/download/win)
 
 - Open CMD using <kbd>Win</kbd> + <kbd>R</kbd> and typing 'cmd', or through Windows Search.
 
-- Go to your Downloads folder using the 'cd' command, and then run: `git clone https://github.com/KarboXXX/backosu.git`. After it finishes, `cd backosu`
+- Go to your Downloads folder using the 'cd' command, and then run: 
+```
+git clone https://github.com/KarboXXX/backosu.git
+cd backosu
+npm install
+npm run dist
+```
 
-- Install project's dependencies using `npm install`
-
-- Compile the project using `npm run dist`
+-----
 
 ### Linux (Debian & Ubuntu-based distros)
 - Open terminal with <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd>
@@ -51,14 +59,14 @@ Compare your beatmaps with someone's beatmaps using this app, and see what song'
   ```sudo apt install npm git```
 
 - go to your Downloads folder and run: 
-  ```git clone https://github.com/KarboXXX/BackOsu.git && cd BackOsu```
+  ```git clone https://github.com/KarboXXX/backosu.git && cd backosu```
 
 - install project dependencies with: 
   ```npm install```
 
-For compiling you have two options, you can either optimize the **electron-builder** command to fit your needs yourself, or compile using the default and more compatible way, running `npm run deps && npm run linux-compile`, which install **only needed additional packages** and compiles for **i386-pc and x86_64 builds**. Don't forget that the **.AppImage** file is what we want to run, so we don't need to install the *debian* package and remove every time we compile. Install by your own if you're happy with the results!
+- for running, stick with ```npm start```, for compiling, ```npm run dist```
 
-If compiling does not work for your for some reason, verify your kernel version and architecture. if still isn't clear, [report an issue](https://github.com/KarboXXX/backosu/issues)
+-----
 
 ### Linux (Arch-based distros)
 - Open the terminal with <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd>
@@ -72,4 +80,7 @@ If compiling does not work for your for some reason, verify your kernel version 
 - install project dependencies with 
   ```npm install```
   
-For compiling you have two options, you can either optimize the **electron-builder** command to fit your needs yourself, or compile using the default and more compatible way, running `npm run deps && npm run linux-compile`, which install **only needed additional packages** and compiles for **i386-pc (32 & 64 bits)**. Don't forget that the **.AppImage** file is what we want to run. Install if you're happy with the results!
+- for running, stick with ```npm start```, for compiling, ```npm run dist```
+
+
+If compiling does not work for some reason, please [report an issue](https://github.com/KarboXXX/backosu/issues).
