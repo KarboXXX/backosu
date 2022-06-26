@@ -2,7 +2,7 @@
 
 <div align='center'>
   <img height='125px' width='120px' src='./readme/electron.svg'>
-  <h2>Powered by <a href='www.electronjs.org'>Electron</a>.</h2>
+  <h2>Powered by <a href='https://www.electronjs.org'>Electron</a>.</h2>
 </div>
 
 <br>
