@@ -20,7 +20,7 @@ function createWindow() {
   win.setMenuBarVisibility(false)
   win.loadFile(path.join(__dirname, './app/index.html'));
   
-  win.setIcon(path.join(__dirname, '/build/icon.png'));
+  win.setIcon(path.join(__dirname, './build/icon.png'));
   // win.webContents.openDevTools()
 };
 
