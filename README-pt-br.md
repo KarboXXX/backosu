@@ -15,7 +15,7 @@
 Daqui, você pode simplesmente fazer backup de seus dados, comparar dois backups diferentes ou baixar suas músicas com facilidade.
 
 ## Como usar
-Quando inserir seu **caminho do osu!**, O caminho padrão do osu! será mostrado como padrão, em caso de você não souber onde ele está. *Nós vamos avisar você se [nós também não soubermos](https://github.com/KarboXXX/backosu/issues).*
+Quando inserir seu **diretório do osu!**, O caminho padrão do osu! será mostrado, caso você não saiba onde ele está. *Nós vamos avisar você se [nós também não soubermos](https://github.com/KarboXXX/backosu/issues).*
 
 <img width='500px' src='./readme/path.png'>
 
@@ -32,7 +32,7 @@ Quando **estiver comparando duas listas**, você vai precisar selecionar dois ar
 ## Instalando
 Agora cabe a você se você quer instalar a [última versão](https://github.com/KarboXXX/backosu/releases) ou [compilar usando o código fonte](https://github.com/KarboXXX/backosu#building-from-source). Qualquer bug relacionado a instalação das versões compiladas, por favor [reporte um problema](https://github.com/KarboXXX/backosu/issues).
 
-Note que todas as músicas que podem ser feitas backups, são somente as ranqueadas, músicas não ranqueadas não se pode fazer backup no momento. Se você souber um servidor espelhado que contêm mapas não ranqueados, ou outro método de link direto usando texto simples [avise nós](https://github.com/KarboXXX/backosu/issues).
+Note que todas as músicas que podem ser feitas backups, são somente as ranqueadas, músicas não ranqueadas não são possíveis no momento. Se você souber um servidor espelhado que contêm mapas não ranqueados, ou outro método de link direto usando texto simples [nos avise](https://github.com/KarboXXX/backosu/issues).
 
 -----
 
