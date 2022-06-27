@@ -9,7 +9,7 @@
 
 
 ### README
-[Portugês Brasileiro](https://github.com/KarboXXX/backosu/blob/main/README.pt-br.md),
+[Português Brasileiro](https://github.com/KarboXXX/backosu/blob/main/README.pt-br.md),
 [English](https://github.com/KarboXXX/backosu/blob/main/README.md)
 
 ## Interface
