@@ -4,6 +4,7 @@ const path = require("path");
 const fs = require("fs");
 const fileDialog = require('file-dialog');
 const swal = require('sweetalert2');
+
 const { backup, typeholder, verifyPlaceholder } = require("./js/backup.js");
 const { downloadBeatmaps } = require('./js/download.js');
 const { compare } = require("./js/compare.js");
@@ -45,7 +46,7 @@ window.addEventListener('load', () => {
   if (process.platform != "win32" && process.platform == "linux" || process.platform == "freebsd") {
     let placeholder = `/home/${os.userInfo().username}/.local/share/osu-wine/OSU`;
     
-    let root = path.parse("/").root;
+    let root = path.parse(__dirname).root;
     document.getElementById("file2-compare-span").innerHTML = root;
     document.getElementById("file1-compare-span").innerHTML = root;
 
@@ -61,6 +62,9 @@ window.addEventListener('load', () => {
 
   if (process.platform == "win32") {
     document.getElementById("path").placeholder = `${os.homedir}\\AppData\\Local\\osu!`;
+    let root = path.parse(__dirname).root;
+    document.getElementById("file2-compare-span").innerHTML = root;
+    document.getElementById("file1-compare-span").innerHTML = root;
   }
 
   document.getElementById('searchBackup').addEventListener('click', () => {
@@ -117,13 +121,13 @@ window.addEventListener('load', () => {
 
   document.getElementById('search-compare-1').addEventListener('click', () => {
     fileDialog({multiple: false, accept: "text/*"}).then(file => {
-      document.getElementById("file1-compare").value = file[0].path;
+      document.getElementById("fileCompare1").value = file[0].path;
     });
   })
 
   document.getElementById('search-compare-2').addEventListener('click', () => {
     fileDialog({multiple: false, accept: "text/*"}).then(file => {
-      document.getElementById("file2-compare").value = file[0].path;
+      document.getElementById("fileCompare2").value = file[0].path;
     });
   })
 
