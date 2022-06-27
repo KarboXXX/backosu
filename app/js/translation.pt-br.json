@@ -1,0 +1,28 @@
+{
+  "preload-js": { 
+    "getuid-alert": "Você foi avisado para não rodar com o privilégio de administrador",
+    "swal-fire-title": "Arquivo já existe",
+    "swal-fire-text": "Você gostaria de sobreescrevê-lo? Não sobreescrevê-lo vai retornar a pasta do arquivo (não deletando-a)",
+    "swal-fire-confirmButtonText": "Sim",
+    "swal-fire-cancelButtonText": "Não",
+    "warning-check-button": "Você esqueceu o diretório do arquivo, por favor insira todos os diretórios dos arquivos",
+    "github-title": "Página Github do KarboXXX",
+    "github-text": "Você quer copiar a URL ou abri-lá em seu navegador?",
+    "github-confirmButtonText": "Abrir",
+    "github-cancelButtonText": "Copiar",
+    "github-then-title": "Copiado",
+    "github-then-text": "URL copiado para a área de transferência"
+  },
+
+  "download-js": {
+    "swal-fire-title": "Baixando...",
+    "swal-fire-text": "Continue acompanhando "
+  },
+
+  "compare-js": {
+    "swal1-fire-title": "Ambos arquivos são idênticos",
+    "swal1-fire-confirmButtonText": "Obrigado",
+    "swal2-fire-title": "compar.txt foi criado",
+    "swal2-fire-confirmButtonText": "Vamos lá!"
+  }
+}
