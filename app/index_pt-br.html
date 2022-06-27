@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <script src="./js/preload.js"></script>
+  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="./css/bootstrap/css/bootstrap.css">
+  <script src="./css/bootstrap/js/bootstrap.js"></script>
+
+  <link rel="stylesheet" href="./css/ubuntu.css">
+
+  <title>Osu BackUp!</title>
+</head>
+
+<body>
+  <div class="container text-center">
+    <div class="header">
+      <p class="h1">Bem vindo!</h1>
+    </div>
+
+    <p class="h4">Salve seus dados do osu! escrevendo os automaticamente em um arquivo '.txt' para você!</p>
+    <p class="h4">Outras ferramentas no futuro! Fique ligado!</p>
+
+    <div id="path-div" class="input-group mb-3">
+      <input class="form-control" spellcheck="false" placeholder="Nós não pudemos achar o seu diretório do osu!, desculpe." id="path"> 
+    </div>
+
+    <div class="d-grid gap-2 col-5 mx-auto">
+      <button class="btn btn-primary btn-lg btn-dark"
+          type="button"
+          data-bs-toggle="collapse" 
+          data-bs-target="#collapseBackup" 
+          aria-expanded="false"
+          aria-controls="collapseBackup">Backup!</button>
+
+      <div class="collapse" id="collapseBackup">
+        <div class="card card-body">
+          <h5>
+            Se você não inserir um diretório para o seu arquivo de backup, o diretório padrão será a sua pasta pessoal.
+          </h5>
+          <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Where?" id="backupPath">
+              <button type="button" class="btn btn-secondary" id="searchBackup">Procurar</button>
+          </div>
+          <button type="button" class="btn btn-primary" id="backup-button">Prosseguir</button>
+        </div>
+      </div>
+
+      <button id="compareButton"
+          class="btn btn-primary btn-lg btn-dark" 
+          type="button"
+          data-bs-toggle="collapse" 
+          data-bs-target="#collapseCompare" 
+          aria-expanded="false"
+          aria-controls="collapseCompare">Comparar duas listas.</button>
+
+      <div class="collapse card card-body" id="collapseCompare">
+        <div class="alert alert-warning" role="alert" id="warning"></div>
+        
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="file1-compare-span">Root</span>
+          <input type="text" class="form-control" placeholder="Path" id="fileCompare1">
+          <button type="button" class="btn btn-secondary" id="search-compare-1">Procurar</button>
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="file2-compare-span">Root</span>
+          <input type="text" class="form-control" placeholder="Path" id="fileCompare2">
+          <button type="button" class="btn btn-secondary" id="search-compare-2">Procurar</button>
+        </div>
+        <button type="button" class="btn btn-success" id="check-button">Comparar listas</button>
+      </div>
+
+      <button id="download-button" class="btn btn-primary btn-lg btn-dark">Baixar da lista.</button>
+
+    </div>
+
+    
+    
+
+  </div>
+    <div id="github"></div>
+</body>
+
+</html>
