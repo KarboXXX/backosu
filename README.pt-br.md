@@ -14,7 +14,7 @@
 
 ## Interface
 
-<img width='720px' src='./readme/interface.png'>
+<img width='720px' src='./readme/interface-pt_br.png'>
 
 Daqui, você pode simplesmente fazer backup de seus dados, comparar dois backups diferentes ou baixar suas músicas com facilidade.
 
@@ -25,11 +25,11 @@ Quando inserir seu **diretório do osu!**, O caminho padrão do osu! será mostr
 
 Quando **estiver fazendo backup**, você pode selecionar a pasta aonde você gostaria que o backup seja criado, sem preocupações criando backup com um disco rígido externo. *(Apesar do backup ser apenas um arquivo de texto com os nomes e os links de download.)*
 
-<img width='500px' src='./readme/backup.png'>
+<img width='500px' src='./readme/backup-pt_br.png'>
 
 Quando **estiver comparando duas listas**, você vai precisar selecionar dois arquivos, inserindo os seus caminhos, seja digitando ou clicando em "**Search**" e os selecionando.
 
-<img width='500px' src='./readme/compare.png'>
+<img width='500px' src='./readme/compare-pt_br.png'>
 
 -----
 
