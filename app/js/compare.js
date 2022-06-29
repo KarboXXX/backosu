@@ -4,9 +4,7 @@ const Diff = require('diff');
 const path = require('path');
 const os = require('os')
 
-var tr;
-
-function compare(path1, path2, tr = require('./app/js/translation.en.us.json')) {
+function compare(path1, path2, tr) {
     var file1, file2, result = "", added = "", removed = "";
     file1 = fs.readFileSync(path1).toString()
     file2 = fs.readFileSync(path2).toString()

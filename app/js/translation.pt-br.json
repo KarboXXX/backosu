@@ -5,6 +5,8 @@
     "swal-fire-text": "Você gostaria de sobreescrevê-lo? Não sobreescrevê-lo vai retornar a pasta do arquivo (não deletando-a)",
     "swal-fire-confirmButtonText": "Sim",
     "swal-fire-cancelButtonText": "Não",
+    "go-swal-fire-title": "list.txt foi gerado!",
+    "go-swal-fire-confirmButtonText": "Oba!",
     "warning-check-button": "Você esqueceu o diretório do arquivo, por favor insira todos os diretórios dos arquivos",
     "github-title": "Página Github do KarboXXX",
     "github-text": "Você quer copiar a URL ou abri-lá em seu navegador?",
