@@ -30,7 +30,7 @@ body { transition: 1s; }
     position: absolute;
     width: 32px;
     height: 32px;
-    top: 90%;
+    /* top: 90%; */
     margin-left: 10px;
     background: url("./github.svg") no-repeat;
     background-size: contain;
@@ -45,6 +45,32 @@ body { transition: 1s; }
     background: url('./github-hover.svg') no-repeat;
     background-size: contain;
     transition: 0.3s;
+}
+
+#lang {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background: url("./language-icon.svg");
+    background-size: contain;
+    display: block;
+    border: none;
+    outline: none;
+    margin: 10px;
+
+    cursor: pointer;
+}
+
+#lang-us { 
+    width: 32px; height: 32px;
+    background: url("./us.png"); background-size: contain;
+    display: block; border: none; outline: none; 
+}
+
+#lang-br { 
+    width: 32px; height: 32px;
+    background: url("./br.png"); background-size: contain;
+    display: block; border: none; outline: none;
 }
 
 /* animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both; */

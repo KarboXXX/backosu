@@ -5,12 +5,14 @@ const fs = require("fs");
 const fileDialog = require('file-dialog');
 const swal = require('sweetalert2');
 
+var tr = require('./js/translation.en.us.json');
+
 const { backup, typeholder, verifyPlaceholder } = require("./js/backup.js");
 const { downloadBeatmaps } = require('./js/download.js');
 const { compare } = require("./js/compare.js");
 
 let bar = path.sep
-var placeholder = { clickedtimes: 0 };
+var placeholder = { valid: false, clickedtimes: 0 };
 let backupResult;
 
 function fallbackCopyTextToClipboard(text) {
@@ -43,25 +45,32 @@ function copyTextToClipboard(text) {
 // require("os").userInfo().username
 
 window.addEventListener('load', () => {
+
   if (process.platform != "win32" && process.platform == "linux" || process.platform == "freebsd") {
-    let placeholder = `/home/${os.userInfo().username}/.local/share/osu-wine/OSU`;
+    let placeholderr = `${os.homedir()}/.local/share/osu-wine/OSU`;
     
     let root = path.parse(__dirname).root;
     document.getElementById("file2-compare-span").innerHTML = root;
     document.getElementById("file1-compare-span").innerHTML = root;
 
 
-    if (verifyPlaceholder(placeholder)) {
-      document.getElementById("path").placeholder = `${os.homedir()}/.local/share/osu-wine/OSU`;
+    if (verifyPlaceholder(placeholderr)) {
+      document.getElementById("path").placeholder = placeholderr;
+      placeholder.valid = true;
     }
     
     if(process.getuid() == 0) {
-      alert('\nYou are advised to not run with root privileges.\n');
+      alert('\n' + tr['preload-js']['getuid-alert'] + '\n');
     }
   }
 
   if (process.platform == "win32") {
-    document.getElementById("path").placeholder = `${os.homedir}\\AppData\\Local\\osu!`;
+    if (verifyPlaceholder(placeholderr)) {
+      document.getElementById("path").placeholder = `${os.homedir}\\AppData\\Local\\osu!`;
+      placeholder.valid = true;
+    } else { 
+      placeholder.valid = false;
+    }
     let root = path.parse(__dirname).root;
     document.getElementById("file2-compare-span").innerHTML = root;
     document.getElementById("file1-compare-span").innerHTML = root;
@@ -72,11 +81,11 @@ window.addEventListener('load', () => {
       if (fs.readFileSync(file[0].path)) {
         swal.fire({
           icon: "warning", 
-          title: "File already exists", 
-          text: "Would you want to overwrite it? Not overwriting will return the file folder (not deleting it)", 
+          title: tr['preload-js']['swal-fire-title'], 
+          text: tr['preload-js']['swal-fire-text'], 
           showCancelButton: true,
-          confirmButtonText: "Yes.",
-          cancelButtonText: "No."
+          confirmButtonText: tr['preload-js']['swal-fire-confirmButtonText'],
+          cancelButtonText: tr['preload-js']['swal-fire-cancelButtonText']
         }).then((result) => {
           if (result.dismiss == "backdrop") return;
           if (result.isConfirmed) {
@@ -113,10 +122,14 @@ window.addEventListener('load', () => {
       }
       
       document.getElementById('backupPath').value = ff;
-      go = false;
+      let go = false;
     }
     
-    if (go) return swal.fire({ icon: "success", title: "list.txt has been created!", confirmButtonText: "Yay!" })
+    if (go) return swal.fire({
+      icon: "success", 
+      title: tr['preload-js']['go-swal-fire-title'], 
+      confirmButtonText: tr['preload-js']['go-swal-fire-confirmButtonText'] 
+    })
   })
 
   document.getElementById('search-compare-1').addEventListener('click', () => {
@@ -132,19 +145,19 @@ window.addEventListener('load', () => {
   })
 
   document.getElementById('check-button').addEventListener('click', () => {
-    let path1 = document.getElementById("file1").value;
-    let path2 = document.getElementById("file2").value;
+    let path1 = document.getElementById("fileCompare1").value;
+    let path2 = document.getElementById("fileCompare2").value;
     let warning = document.getElementById("warning");
 
     if (path1 == "" || path2 == "") {
       warning.style.display = "block";
-      warning.innerHTML = "You forgot a file path, please enter all required file paths.";
+      warning.innerHTML = tr['preload-js']['warning-check-button'];
 
       return;
     }
     
     document.getElementById("warning").style.display = "none";
-    compare(path1, path2);
+    compare(path1, path2, tr);
 
   })
 
@@ -153,23 +166,33 @@ window.addEventListener('load', () => {
   })
 
   document.getElementById('download-button').addEventListener('click', () => {
-    downloadBeatmaps()
+    downloadBeatmaps(tr);
+  })
+
+  document.getElementById('lang-us').addEventListener('click', () => {
+    tr = require('./js/translation.en.us.json');
+    langLoader(tr);
+  })
+
+  document.getElementById('lang-br').addEventListener('click', () => {
+    tr = require('./js/translation.pt-br.json');
+    langLoader(tr);
   })
 
   document.getElementById('github').addEventListener('click', () => {
     swal.fire({
       icon: "info", 
-      title: "KarboXXX's github page", 
-      text: "Do you want to copy the URL, or open it on your browser?", 
+      title: tr['preload-js']['github-title'], 
+      text: tr['preload-js']['github-text'], 
       showCancelButton: true,
-      confirmButtonText: "Open",
-      cancelButtonText: "Copy"
+      confirmButtonText: tr['preload-js']['github-confirmButtonText'],
+      cancelButtonText: tr['preload-js']['github-cancelButtonText']
     }).then((result) => {
       if (result.dismiss == "backdrop") return;
       if (result.isDismissed && result.dismiss == "cancel") {
         swal.fire(
-          'Copied',
-          'URL copied to clipboard.',
+          tr['preload-js']['github-then-title'],
+          tr['preload-js']['github-then-text'],
           'success'
         ); copyTextToClipboard("https://github.com/KarboXXX")
       } else {
@@ -179,5 +202,27 @@ window.addEventListener('load', () => {
       }
     });
   })
-
 })
+
+// language selector omg!1!!11 :3
+function langLoader(tr) {
+  document.getElementsByClassName("h1")[0].innerHTML = tr["index-html"]["header-h1"];
+  document.getElementsByClassName("h4")[0].innerHTML = tr["index-html"]["h4-0"];
+  document.getElementsByClassName("h4")[1].innerHTML = tr["index-html"]["h4-1"];
+  document.getElementById("h5-card").innerHTML = tr["index-html"]["h5-card"];
+  document.getElementById("backup-button").innerHTML = tr["index-html"]["backup-button"];
+  document.getElementById("searchBackup").innerHTML = tr["index-html"]["searchBackup"];
+  document.getElementById("compareButton").innerHTML = tr["index-html"]["compareButton"];
+  document.getElementById("check-button").innerHTML = tr["index-html"]["check-button"];
+  document.getElementById("download-button").innerHTML = tr["index-html"]["download-button"];
+  
+  document.getElementById("search-compare-1").innerHTML = tr["index-html"]["search-compare"];
+  document.getElementById("search-compare-2").innerHTML = tr["index-html"]["search-compare"];
+  
+  if (!placeholder.valid) document.getElementById("path").placeholder = tr["index-html"]["placeholder-path"];
+
+  document.getElementById("fileCompare1").placeholder = tr["index-html"]["fileCompare-placeholder"];
+  document.getElementById("fileCompare2").placeholder = tr["index-html"]["fileCompare-placeholder"];
+  document.getElementById("backupPath").placeholder = tr["index-html"]["backupPath-placeholder"];
+
+}

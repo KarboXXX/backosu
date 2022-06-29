@@ -29,7 +29,7 @@ function download(uri, filename) {
     }).on('error', onError);
 };
 
-function downloadBeatmaps() {
+function downloadBeatmaps(tr = require('./app/js/translation.en.us.json')) {
     var dir = "", folder = ""
     fileDialog({multiple: false, accept: "text/*"}).then((files) => {
         let list = files[0].path;
@@ -55,7 +55,7 @@ function downloadBeatmaps() {
 
             download(link, dir);
         })
-        swal.fire({icon: "success", title: "Downloading...", text: "Keep tracking of " + folder.toString().replace(/[,]/g, '')});
+        swal.fire({icon: "success", title: tr["download-js"]["swal-fire-title"], text: tr["download-js"]["swal-fire-text"] + folder.toString().replace(/[,]/g, '')});
     })
 }
 

@@ -1,0 +1,47 @@
+{
+  "preload-js": { 
+    "getuid-alert": "You are advised to not run with root privileges.",
+    "swal-fire-title": "File already exists",
+    "swal-fire-text": "Would you want to overwrite it? Not overwriting will return the file folder (not deleting it)",
+    "swal-fire-confirmButtonText": "Yes.",
+    "swal-fire-cancelButtonText": "No.",
+    "go-swal-fire-title": "list.txt has been created!",
+    "go-swal-fire-confirmButtonText": "Oba!",
+    "warning-check-button": "You forgot a file path, please enter all required file paths.",
+    "github-title": "KarboXXX's github page",
+    "github-text": "Do you want to copy the URL, or open it on your browser?",
+    "github-confirmButtonText": "Open",
+    "github-cancelButtonText": "Copy",
+    "github-then-title": "Copied",
+    "github-then-text": "URL copied to clipboard."
+  },
+
+  "download-js": {
+    "swal-fire-title": "Downloading...",
+    "swal-fire-text": "Keep tracking of "
+  },
+
+  "compare-js": {
+    "swal1-fire-title": "Both files are idetical!",
+    "swal1-fire-confirmButtonText": "Thanks",
+    "swal2-fire-title": "compar.txt was created",
+    "swal2-fire-confirmButtonText": "Let's go!"
+  },
+
+  "index-html": {
+    "header-h1": "Welcome!",
+    "h4-0": "Save your osu! data by automaticaly writing them in a '.txt' file for you!",
+    "h4-1": "Other features in the future! Stay tunned!",
+    "h5-card": "If you don't insert a path for your backup file, the default path will be in your home/user directory.",
+    "searchBackup": "Search",
+    "backup-button": "Proceed",
+    "compareButton": "Compare two lists.",
+    "search-compare": "Search",
+    "check-button": "Compare lists",
+    "download-button": "Download from list.",
+    
+    "placeholder-path": "We couldn't guess your osu! path, my bad.",
+    "fileCompare-placeholder": "Path",
+    "backupPath-placeholder": "Where?"
+  }
+}

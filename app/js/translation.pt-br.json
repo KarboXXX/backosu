@@ -24,5 +24,22 @@
     "swal1-fire-confirmButtonText": "Obrigado",
     "swal2-fire-title": "compar.txt foi criado",
     "swal2-fire-confirmButtonText": "Vamos lá!"
+  },
+
+  "index-html": {
+    "header-h1": "Bem vindo!",
+    "h4-0": "Salve seus dados do osu! escrevendo os automaticamente em um arquivo '.txt' para você!",
+    "h4-1": "Outras ferramentas no futuro! Fique ligado!",
+    "h5-card": "Se você não inserir um diretório para o seu arquivo de backup, o diretório padrão será a sua pasta pessoal.",
+    "searchBackup": "Procurar",
+    "backup-button": "Prosseguir",
+    "compareButton": "Comparar duas listas.",
+    "search-compare": "Procurar",
+    "check-button": "Comparar listas",
+    "download-button": "Baixar da lista.",
+    
+    "placeholder-path": "Nós não pudemos achar o seu diretório do osu!, desculpe.",
+    "fileCompare-placeholder": "Diretório",
+    "backupPath-placeholder": "Onde?"
   }
 }

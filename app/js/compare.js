@@ -4,7 +4,9 @@ const Diff = require('diff');
 const path = require('path');
 const os = require('os')
 
-function compare(path1, path2) {
+var tr;
+
+function compare(path1, path2, tr = require('./app/js/translation.en.us.json')) {
     var file1, file2, result = "", added = "", removed = "";
     file1 = fs.readFileSync(path1).toString()
     file2 = fs.readFileSync(path2).toString()
@@ -17,8 +19,8 @@ function compare(path1, path2) {
     if (file1 == file2 || added == "" && removed == "") {
         return swal.fire({
             icon: "success", 
-            title: "Both files are idetical!", 
-            confirmButtonText: "Thanks!" 
+            title: tr["compare-js"]["swal1-fire-title"], 
+            confirmButtonText: tr["compare-js"]["swal1-fire-confirmButtonText"] 
         });
     }
 
@@ -33,8 +35,8 @@ function compare(path1, path2) {
 
     return swal.fire({
         icon: "success", 
-        title: `${dir}${path.sep}compar.txt has been created!`, 
-        confirmButtonText: "Let's go!" 
+        title: `${dir}${path.sep}compar.txt ${tr["compare-js"]["swal2-fire-title"]}`, 
+        confirmButtonText: tr["compare-js"]["swal2-fire-confirmButtonText"] 
     }); 
 }
 
