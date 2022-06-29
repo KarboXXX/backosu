@@ -1,6 +1,6 @@
 {
   "name": "backosu",
-  "version": "2.3.0",
+  "version": "3.0",
   "description": "backup all your songs into a text file.",
   "main": "main.js",
   "author": "KarboX@KarboXXX <karbox@osubackup.com>",
