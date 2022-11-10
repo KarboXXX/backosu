@@ -20,7 +20,7 @@
     "sweetalert2": "^11.3.4"
   },
   "devDependencies": {
-    "electron": "^15.5.5",
+    "electron": "^18.3.7",
     "electron-builder": "^23.3.3"
   },
   "scripts": {
