@@ -27,7 +27,7 @@ function download(uri, filename) {
             deferred.reject(new Error(response.statusCode + ' ' + response.statusMessage));
         }
     }).on('error', onError);
-};
+}
 
 function downloadBeatmaps(tr = require('./app/js/translation.en.us.json')) {
     var dir = "", folder = ""
@@ -35,7 +35,7 @@ function downloadBeatmaps(tr = require('./app/js/translation.en.us.json')) {
         let list = files[0].path;
         let name = fs.readFileSync(list).toString().split(/[\n]/g);
 
-        name.forEach((v, i, a) => {
+        name.forEach((v) => {
             let u = v.match(urlExpression)
             let n = v.match(nameExpression)
             if (v == undefined || v == null || v == 'null') return;
@@ -47,8 +47,10 @@ function downloadBeatmaps(tr = require('./app/js/translation.en.us.json')) {
             if (filename.startsWith(' ') || filename.startsWith('-')) filename = filename.slice(1);
 
             dir = path.resolve(os.homedir(), './Downloads', './downloadedMaps');
-            if (!fs.existsSync(path.resolve(os.homedir(), './Downloads'))) { dir = path.resolve(os.homedir(), './downloadedMaps') }
-            if (!fs.existsSync(dir)) { fs.mkdirSync(dir) }
+            if (!fs.existsSync(path.resolve(os.homedir(), './Downloads'))) {
+                dir = path.resolve(os.homedir(), './downloadedMaps')
+            }
+            if (!fs.existsSync(dir)) fs.mkdirSync(dir);
             folder = dir;
             dir = path.resolve(dir, filename + ".osz")
             folder = folder.toString().replace(/[,]/g, '')

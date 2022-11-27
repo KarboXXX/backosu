@@ -11,7 +11,6 @@ const { backup, typeholder, verifyPlaceholder } = require("./js/backup.js");
 const { downloadBeatmaps } = require('./js/download.js');
 const { compare } = require("./js/compare.js");
 
-let bar = path.sep
 var placeholder = { valid: false, clickedtimes: 0 };
 let backupResult;
 
@@ -28,7 +27,7 @@ function fallbackCopyTextToClipboard(text) {
     var successful = document.execCommand('copy');
     var msg = successful ? 'successful' : 'unsuccessful';
     console.log('fallback: copying text command was ' + msg);
-  } catch (err) { console.error('fallback: oops, unable to copy', err); };
+  } catch (err) { console.error('fallback: oops, unable to copy', err); }
   document.body.removeChild(textArea);
 }
 
@@ -94,11 +93,11 @@ window.addEventListener('load', () => {
             let ff = path.resolve(file[0].path, '..')
             document.getElementById('backupPath').value = ff.toString();
             
-          };
-        });
-      };
-    });
-  });
+          }
+        })
+      }
+    })
+  })
 
   document.getElementById('backup-button').addEventListener('click', () => {
     backupResult = backup(document.getElementById('backupPath').value);
@@ -122,7 +121,6 @@ window.addEventListener('load', () => {
       }
       
       document.getElementById('backupPath').value = ff;
-      let go = false;
     }
     
     if (go) return swal.fire({
@@ -200,7 +198,7 @@ window.addEventListener('load', () => {
           require('electron').shell.openExternal("https://github.com/KarboXXX")
         }
       }
-    });
+    })
   })
 })
 

@@ -1,4 +1,3 @@
-const fileDialog = require('file-dialog');
 const fs = require('fs');
 const Diff = require('diff');
 const path = require('path');

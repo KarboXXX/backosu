@@ -22,7 +22,7 @@ function createWindow() {
   
   win.setIcon(path.join(__dirname, './build/icon.png'));
   // win.webContents.openDevTools()
-};
+}
 
 app.whenReady().then(() => {
   createWindow();
