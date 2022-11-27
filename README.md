@@ -7,6 +7,8 @@
 
 <br>
 
+[![CodeFactor](https://www.codefactor.io/repository/github/karboxxx/backosu/badge/main)](https://www.codefactor.io/repository/github/karboxxx/backosu/overview/main)
+
 ### README
 [Português Brasileiro](https://github.com/KarboXXX/backosu/blob/main/README.pt-br.md),
 [English](https://github.com/KarboXXX/backosu/blob/main/README.md)
