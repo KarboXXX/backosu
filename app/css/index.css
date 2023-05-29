@@ -47,6 +47,10 @@ body { transition: 1s; }
     transition: 0.3s;
 }
 
+#progressbarweb-div {
+    margin-top: calc(10% - 40px);
+}
+
 #lang {
     position: absolute;
     width: 32px;

@@ -5,7 +5,7 @@
     "swal-fire-text": "Você gostaria de sobreescrevê-lo? Não sobreescrevê-lo vai retornar a pasta do arquivo (não deletando-a)",
     "swal-fire-confirmButtonText": "Sim",
     "swal-fire-cancelButtonText": "Não",
-    "go-swal-fire-title": "list.txt foi gerado!",
+    "go-swal-fire-title": "foi gerado!",
     "go-swal-fire-confirmButtonText": "Oba!",
     "warning-check-button": "Você esqueceu o diretório do arquivo, por favor insira todos os diretórios dos arquivos",
     "github-title": "Página Github do KarboXXX",
@@ -13,12 +13,15 @@
     "github-confirmButtonText": "Abrir",
     "github-cancelButtonText": "Copiar",
     "github-then-title": "Copiado",
-    "github-then-text": "URL copiado para a área de transferência"
+    "github-then-text": "URL copiado para a área de transferência",
+    "backup-filetype-error-title": "Oops!",
+    "backup-filetype-error-text": "Verifique se o arquivo de destino não é um block device ou atalho."
   },
 
   "download-js": {
+    "swal-done-title": "Pronto!",
     "swal-fire-title": "Baixando...",
-    "swal-fire-text": "Continue acompanhando "
+    "swal-fire-text": "Alguns beatmaps podem falhar em baixar por serem ranqueados, ou por um erro no servidor, encontre eles em unranked.txt aqui: "
   },
 
   "compare-js": {

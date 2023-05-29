@@ -5,7 +5,7 @@
     "swal-fire-text": "Would you want to overwrite it? Not overwriting will return the file folder (not deleting it)",
     "swal-fire-confirmButtonText": "Yes.",
     "swal-fire-cancelButtonText": "No.",
-    "go-swal-fire-title": "list.txt has been created!",
+    "go-swal-fire-title": "has been created!",
     "go-swal-fire-confirmButtonText": "Yay!",
     "warning-check-button": "You forgot a file path, please enter all required file paths.",
     "github-title": "KarboXXX's github page",
@@ -13,12 +13,15 @@
     "github-confirmButtonText": "Open",
     "github-cancelButtonText": "Copy",
     "github-then-title": "Copied",
-    "github-then-text": "URL copied to clipboard."
+    "github-then-text": "URL copied to clipboard.",
+    "backup-filetype-error-title": "Oops!",
+    "backup-filetype-error-text": "Verify if the path points to a block device or symlink."
   },
 
   "download-js": {
+    "swal-done-title": "Done!",
     "swal-fire-title": "Downloading...",
-    "swal-fire-text": "Keep tracking of "
+    "swal-fire-text": "Some songs can fail to download for being unranked, or for an server error, find them at unranked.txt on "
   },
 
   "compare-js": {

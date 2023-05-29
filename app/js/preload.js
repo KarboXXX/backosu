@@ -11,6 +11,11 @@ const { backup, typeholder, verifyPlaceholder } = require("./js/backup.js");
 const { downloadBeatmaps } = require('./js/download.js');
 const { compare } = require("./js/compare.js");
 
+function setProgressWeb(current) {
+  document.getElementById('progressbarweb').ariaValueNow = current;
+  document.getElementById('progressbarweb').style.width = current + '%';
+}
+
 var placeholder = { valid: false, clickedtimes: 0 };
 let backupResult;
 
@@ -103,13 +108,22 @@ window.addEventListener('load', () => {
     backupResult = backup(document.getElementById('backupPath').value);
     let go = true;
 
-    if (backupResult == 'osu_path_error') {
+    if (backupResult == 'osu_path_error' || backupResult == 'backup_filetype_error') {
       document.getElementById('path').style.animation = 'shake 0.82s cubic-bezier(.36,.07,.19,.97) both'
       document.getElementById('path').style.border = '1px solid red'
       setTimeout(() => { 
         document.getElementById('path').style.animation = '';
         document.getElementById('path').style.border = '';
       }, 821)
+      go = false;
+    }
+
+    if (backupResult == 'backup_filetype_error') {
+      swal.fire({
+        icon: "warning",
+        title: tr["preload-js"]["backup-filetype-error-title"],
+        text: tr["preload-js"]["backup-filetype-error-text"]
+      })
       go = false;
     }
     
@@ -122,10 +136,13 @@ window.addEventListener('load', () => {
       
       document.getElementById('backupPath').value = ff;
     }
+
+    let finalfile = backupResult.split('/');
+    finalfile = finalfile[finalfile.length-1];
     
     if (go) return swal.fire({
       icon: "success", 
-      title: tr['preload-js']['go-swal-fire-title'], 
+      title: finalfile + " " + tr['preload-js']['go-swal-fire-title'], 
       confirmButtonText: tr['preload-js']['go-swal-fire-confirmButtonText'] 
     })
   })
@@ -164,7 +181,7 @@ window.addEventListener('load', () => {
   })
 
   document.getElementById('download-button').addEventListener('click', () => {
-    downloadBeatmaps(tr);
+    downloadBeatmaps(tr, setProgressWeb);
   })
 
   document.getElementById('lang-us').addEventListener('click', () => {

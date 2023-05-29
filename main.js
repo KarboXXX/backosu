@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { contextBridge, app, BrowserWindow } = require('electron')
 const ipc = require('electron').ipcMain;
 const dialog = require('electron').dialog;
 const path = require('path');
@@ -44,6 +44,12 @@ ipc.on('open-file-dialog', function (event) {
   }, function (files) {
     event.sender.send('selected-dir', files);
   })
+})
+
+ipc.on('set-progress-bar', function (event, data) {
+  const webContents = event.sender;
+  const win = BrowserWindow.fromWebContents(webContents);
+  win.setProgressBar(data);
 })
 
 app.on('activate', () => { if (win === null) { createWindow() } })
