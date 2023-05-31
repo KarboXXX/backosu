@@ -49,7 +49,6 @@ function copyTextToClipboard(text) {
 // require("os").userInfo().username
 
 window.addEventListener('load', () => {
-
   if (process.platform != "win32" && process.platform == "linux" || process.platform == "freebsd") {
     let placeholderr = `${os.homedir()}/.local/share/osu-wine/OSU`;
     
@@ -61,6 +60,8 @@ window.addEventListener('load', () => {
     if (verifyPlaceholder(placeholderr)) {
       document.getElementById("path").placeholder = placeholderr;
       placeholder.valid = true;
+    } else {
+      placeholder.valid = false;
     }
     
     if(process.getuid() == 0) {
@@ -69,15 +70,18 @@ window.addEventListener('load', () => {
   }
 
   if (process.platform == "win32") {
+    let placeholderr = `${os.homedir}\\AppData\\Local\\osu!`;
+    
+    let root = path.parse(__dirname).root;
+    document.getElementById("file2-compare-span").innerHTML = root;
+    document.getElementById("file1-compare-span").innerHTML = root;
+
     if (verifyPlaceholder(placeholderr)) {
-      document.getElementById("path").placeholder = `${os.homedir}\\AppData\\Local\\osu!`;
+      document.getElementById("path").placeholder = placeholderr;
       placeholder.valid = true;
     } else { 
       placeholder.valid = false;
     }
-    let root = path.parse(__dirname).root;
-    document.getElementById("file2-compare-span").innerHTML = root;
-    document.getElementById("file1-compare-span").innerHTML = root;
   }
 
   document.getElementById('searchBackup').addEventListener('click', () => {
@@ -135,14 +139,16 @@ window.addEventListener('load', () => {
       }
       
       document.getElementById('backupPath').value = ff;
+      go = false;
     }
 
-    let finalfile = backupResult.split('/');
+    let finalfile = backupResult.split(path.sep);
+    console.log(finalfile);
     finalfile = finalfile[finalfile.length-1];
     
     if (go) return swal.fire({
       icon: "success", 
-      title: finalfile + " " + tr['preload-js']['go-swal-fire-title'], 
+      title: finalfile + " " + tr['preload-js']['go-swal-fire-title'],
       confirmButtonText: tr['preload-js']['go-swal-fire-confirmButtonText'] 
     })
   })

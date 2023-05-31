@@ -17,8 +17,8 @@ function backup(backupPath) {
   if (!backupPath || !fs.existsSync(backupPath)) return 'backup_path_error';
   if (!fs.lstatSync(backupPath).isDirectory || !fs.lstatSync(backupPath).isFile) return 'backup_filetype_error';
 
-  if (osuDir.endsWith('/Songs')) {
-    osuDir.replace('/Songs', '');
+  if (osuDir.endsWith(path.sep + 'Songs')) {
+    osuDir.replace(path.sep + 'Songs', '');
   }
 
   if (fs.existsSync(path.resolve(osuDir, './Songs'))) {
@@ -32,8 +32,8 @@ function backup(backupPath) {
       downloadList = downloadList.split('/n').sort((a, b) => { return a - b }).toString(); // alphabetic order
     });
     if (fs.lstatSync(backupPath).isDirectory()) {
-      var dir = backupPath
-      fs.writeFileSync(path.resolve(dir, './list.txt'), downloadList, "utf8");
+      var dir = path.resolve(backupPath, './list.txt');
+      fs.writeFileSync(dir, downloadList, "utf8");
     } else {
       var dir = backupPath
       fs.writeFileSync(dir, downloadList, "utf8");

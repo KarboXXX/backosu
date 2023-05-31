@@ -28,11 +28,14 @@ function compare(path1, path2, tr) {
 
     var dir = path.resolve(actual, "./backup");
     if (!fs.existsSync(dir)) fs.mkdirSync(dir);
-    fs.writeFileSync(`${dir}/compar.txt`, result, "utf8");
+    fs.writeFileSync(path.resolve(dir, './compar.txt'), result, "utf8");
+
+    let comparefile = path.resolve(dir, './compar.txt').split(path.sep);
+    comparefile = comparefile[comparefile.length - 1];
 
     return swal.fire({
         icon: "success", 
-        title: `${dir}${path.sep}compar.txt ${tr["compare-js"]["swal2-fire-title"]}`, 
+        title: `${comparefile} ${tr["compare-js"]["swal2-fire-title"]}`, 
         confirmButtonText: tr["compare-js"]["swal2-fire-confirmButtonText"] 
     }); 
 }

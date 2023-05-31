@@ -27,7 +27,7 @@
   "compare-js": {
     "swal1-fire-title": "Both files are idetical!",
     "swal1-fire-confirmButtonText": "Thanks",
-    "swal2-fire-title": "compar.txt was created",
+    "swal2-fire-title": "was created",
     "swal2-fire-confirmButtonText": "Let's go!"
   },
 
